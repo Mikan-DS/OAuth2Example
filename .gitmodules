@@ -1,0 +1,3 @@
+[submodule "OAuth2CoreLib"]
+	path = OAuth2CoreLib
+	url = https://github.com/Mikan-DS/OAuth2CoreLib.git
