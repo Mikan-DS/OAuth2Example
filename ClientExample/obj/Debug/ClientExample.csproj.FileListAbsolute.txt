@@ -1,0 +1,8 @@
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\bin\Debug\ClientExample.exe.config
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\bin\Debug\ClientExample.exe
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\bin\Debug\ClientExample.pdb
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\obj\Debug\ClientExample.csproj.AssemblyReference.cache
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\obj\Debug\ClientExample.csproj.SuggestedBindingRedirects.cache
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\obj\Debug\ClientExample.csproj.CoreCompileInputs.cache
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\obj\Debug\ClientExample.exe
+C:\Users\Sharpohyashka\source\repos\Mikan-DS\OAuth20Server\ClientExample\obj\Debug\ClientExample.pdb
