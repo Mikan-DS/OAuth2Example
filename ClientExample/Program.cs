@@ -9,6 +9,7 @@ namespace ClientExample
 {
     public class Program
     {
+        public const string authServerUrl = "https://localhost:7121/";
 
         static void Main(string[] args)
         {
@@ -28,10 +29,10 @@ namespace ClientExample
         public static async Task CreateClientAsync() {
 
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7121/dev/modify_client");
+            var request = new HttpRequestMessage(HttpMethod.Post, authServerUrl+"dev/modify_client");
             var content = new MultipartFormDataContent();
             content.Add(new StringContent("console_client"), "client_id");
-            content.Add(new StringContent("cc.read cc.write cc.admin"), "scopes");
+            content.Add(new StringContent("cc.read cc.write cc.admin"), "scope");
             request.Content = content;
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
@@ -42,10 +43,10 @@ namespace ClientExample
         public static async Task CreateAdminUserAsync()
         {
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7121/dev/modify_user");
+            var request = new HttpRequestMessage(HttpMethod.Post, authServerUrl + "dev/modify_user");
             var content = new MultipartFormDataContent();
             content.Add(new StringContent("bossadmin"), "user_id");
-            content.Add(new StringContent("test_cli.test test_cli.admin cc.read cc.write cc.admin"), "scopes");
+            content.Add(new StringContent("test_cli.test test_cli.admin cc.read cc.write cc.admin"), "scope");
             request.Content = content;
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
@@ -56,10 +57,11 @@ namespace ClientExample
         public static async Task<string> Auth()
         {
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7121/oauth2/auth");
+            var request = new HttpRequestMessage(HttpMethod.Post, authServerUrl + "oauth2/auth");
             var content = new MultipartFormDataContent();
             content.Add(new StringContent("console_client"), "client_id");
             content.Add(new StringContent("bossadmin"), "user_id");
+            content.Add(new StringContent("code"), "response_type");
             content.Add(new StringContent("cc.read cc.write cc.admin"), "scope");
             request.Content = content;
             var response = await client.SendAsync(request);
@@ -75,7 +77,7 @@ namespace ClientExample
         public static async Task<string> GetToken(string authCode)
         {
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7121/oauth2/token");
+            var request = new HttpRequestMessage(HttpMethod.Post, authServerUrl + "oauth2/token");
             var content = new MultipartFormDataContent();
             content.Add(new StringContent("authorization_code"), "grant_type");
             content.Add(new StringContent(authCode), "code");

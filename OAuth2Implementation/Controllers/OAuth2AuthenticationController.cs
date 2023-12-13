@@ -22,29 +22,30 @@ namespace OAuth2Implementation.Controllers
         /// Оно не находится в <see cref="OAuth2CoreLib.Controllers.OAuth2Controller"/> потому что
         /// Реализация зависит от требования сервиса.
         /// </summary>
-        public IActionResult Auth(AuthRequest authRequest, string user_id, string? secret)
+        public IActionResult Auth(AuthRequest authRequest, string user_id, string? client_secret)
         {
-            secret ??= string.Empty;
-            User user = oAuth2Service.GetAuthenticatedUser(user_id, secret);
+            // Все что тут нужно, так это получить пользователя
+            client_secret ??= string.Empty;
+            User? user = oAuth2Service.GetAuthenticatedUser(user_id, client_secret);
+
+
             if (user != null)
             {
                 try
                 {
-                    return Ok(oAuth2Service.GenerateCode(authRequest, user));
-                }
-                catch (WrongClientException)
-                {
-                    return BadRequest("Client not found");
-                }
-                catch (WrongClientScopeException)
-                {
-                    return BadRequest("Problem with client scopes");
+                    string code = oAuth2Service.GenerateCode(authRequest, user);
 
-                }
-                catch (WrongUserException)
-                {
-                    return BadRequest("Problem with user scopes");
+                    switch (authRequest.response_type)
+                    {
+                        case "code":
+                            return Ok(code);
+                    }
 
+                    return Ok();
+                }
+                catch (OAuthException e)
+                {
+                    return BadRequest(e.Message);
                 }
                 catch (Exception)
                 {

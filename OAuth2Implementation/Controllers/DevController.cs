@@ -29,7 +29,7 @@ namespace OAuth2Implementation.Controllers
                 mcsRequest.client_id,
                 mcsRequest.secret,
                 mcsRequest.enabled,
-                mcsRequest.scopes != null? mcsRequest.scopes.Split(" "): new string[0]);
+                mcsRequest.scope != null? mcsRequest.scope.Split(" "): new string[0]);
             
             return Json(client);
         }
@@ -40,7 +40,8 @@ namespace OAuth2Implementation.Controllers
             User user = oAuth2Service.CreateOrModifyUser(
                 musRequest.user_id,
                 musRequest.secret,
-                musRequest.scopes != null ? musRequest.scopes.Split(" ") : new string[0]);
+                musRequest.enabled,
+                musRequest.scope != null ? musRequest.scope.Split(" ") : new string[0]);
             return Json(user);
         }
     }

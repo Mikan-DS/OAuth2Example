@@ -5,7 +5,7 @@
         public string client_id {  get; set; }
         public string secret { get; set; }
         public bool? enabled { get; set; }
-        public string scopes { get; set; }
+        public string scope { get; set; }
 
     }
 }
