@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-X509Certificate2 certificate = new X509Certificate2("JwtCred.cer");
+X509Certificate2 certificate = new("JwtCred.cer");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -18,9 +18,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new X509SecurityKey(certificate),
-            ValidateIssuer = true, // Отключение проверки издателя
+            ValidateIssuer = true,
             ValidIssuer = builder.Configuration["OAuth2Server"],
-            ValidateLifetime = true, // Включение проверки срока действия токена
+            ValidateLifetime = true,
             ValidateAudience = false
         };
     });
