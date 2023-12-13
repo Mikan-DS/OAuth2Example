@@ -18,9 +18,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new X509SecurityKey(certificate),
-            ValidateAudience = false, // Отключение проверки аудитории
-            ValidateIssuer = false, // Отключение проверки издателя
-            ValidateLifetime = true // Включение проверки срока действия токена
+            ValidateIssuer = true, // Отключение проверки издателя
+            ValidIssuer = builder.Configuration["OAuth2Server"],
+            ValidateLifetime = true, // Включение проверки срока действия токена
+            ValidateAudience = false
         };
     });
 
