@@ -62,6 +62,7 @@ namespace OAuth2Implementation.Controllers
         /// <param name="signInRequest"></param>
         /// <returns></returns>
         [HttpPost("signin")]
+        [Obsolete("Легче и быстрее через modify_user")]
         public IActionResult SignIn(SignInRequest signInRequest)
         {
             string result = oAuth2Service.AddUser(signInRequest.user_id, signInRequest.secret);

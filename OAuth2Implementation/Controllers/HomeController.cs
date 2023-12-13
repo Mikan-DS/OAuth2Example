@@ -15,7 +15,7 @@ namespace OAuth2Implementation.Controllers
 
         public IActionResult Index()
         {
-            return Json(new { YES = "IT'S ME" });
+            return Json(new { PING="PONG"});
         }
 
 

@@ -32,4 +32,13 @@
     <ProjectReference Include="..\OAuth2CoreLib\OAuth2CoreLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CRT\JwtCred.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CRT\JwtCred.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
